@@ -10,7 +10,8 @@ Pasos a seguir:
    https://github.com/Adalab/modulo-4-evaluacion-final-bpw-Mar-CM.git
 2. Ejecuta `npm install`
 3. Puedes ejecutar todas las dependencias con el comando `npm express cors mysql12 dotenv`
-4. Arranca el proyecto con el comando `npm run dev`
+4. Crea en tu proyecto un archivo .env como te mostramos en el ejemplo.
+5. Arranca el proyecto con el comando `npm run dev`
 
 ## Instrucciones de uso
 
