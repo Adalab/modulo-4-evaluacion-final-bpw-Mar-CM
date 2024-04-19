@@ -11,10 +11,10 @@ app.use(express.json());
 
 async function getDBConnection() {
 	const connection = await mysql.createConnection({
-		host: "localhost",
-		user: process.env.DB_USER,
-		password: process.env.DB_PASSWORD,
-		database: "libros_db",
+		host: "sql.freedb.tech",
+		user: "freedb_mar_admin",
+		password: "s2&U#2n5bJq2$5Y",
+		database: "freedb_libros_db",
 	});
 	connection.connect();
 	return connection;
@@ -38,4 +38,27 @@ app.get("/libros", async (req, res) => {
 		info: { count: result.lenght },
 		results: result,
 	});
+});
+
+app.get("/libros/:id", async (req, res) => {
+	const idLibros = req.params.id;
+	const connection = await getDBConnection();
+	const querySQL = "SELECT * FROM libros WHERE id = ?";
+	const [result] = await connection.query(querySQL, [idLibros]);
+
+	console.log(result);
+
+	connection.end();
+
+	if (result.lenght === 0) {
+		res.status(404).json({
+			success: false,
+			results: "No hay ningun elemento con ese id",
+		});
+	} else {
+		res.status(200).json({
+			success: true,
+			result: result,
+		});
+	}
 });
