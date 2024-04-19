@@ -12,8 +12,8 @@ app.use(express.json());
 async function getDBConnection() {
 	const connection = await mysql.createConnection({
 		host: "sql.freedb.tech",
-		user: "freedb_mar_admin",
-		password: "s2&U#2n5bJq2$5Y",
+		user: process.env.PDB_USER,
+		password: process.env.DB_PASSWORD,
 		database: "freedb_libros_db",
 	});
 	connection.connect();
