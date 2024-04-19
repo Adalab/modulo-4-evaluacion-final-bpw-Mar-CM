@@ -24,3 +24,10 @@ const port = process.env.PORT || 5001;
 app.listen(port, () => {
 	console.log(`Server is listening in port: ${port}`);
 });
+
+app.get("/libros", async (req, res) => {
+	const connection = await getDBConnection();
+	const querySQL = "SELECT * FROM libros";
+	const [result] = await connection.query(querySQL);
+	console.log(result);
+});
